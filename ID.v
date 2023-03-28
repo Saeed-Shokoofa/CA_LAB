@@ -1,11 +1,11 @@
 module ID(clk,rst,z,c,n,v,instruction,PC,
 WB_EN,MEM_R,MEM_W,EXE_CMD,B,S,PC_out,val_rn,val_rm,dest,signed_imm,sth,imm);
 input [31:0]instruction,PC;
-input z,c,n,v;
+input clk,rst,z,c,n,v;
 output WB_EN,MEM_R,MEM_W,B,S;
 output [3:0]EXE_CMD,dest;
 output [31:0]PC_out,val_rn,val_rm;
-
+output signed_imm,sth,imm;
 wire check_res;
 wire[8:0] mux_in,mux_out;
 
