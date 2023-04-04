@@ -8,7 +8,7 @@ output [3:0]EXE_CMD,dest;
 output [31:0]PC_out,val_rn,val_rm;
 output imm;
 output [23:0] signed_imm;
-output [11:0]Shift_Operand;
+output [11:0] Shift_Operand;
 wire check_res;
 wire [8:0] mux_in,mux_out;
 wire [3:0] Mux2_Out;
