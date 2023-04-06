@@ -18,5 +18,10 @@ st_reg ST(.clk(clk),.rst(rst),.S(S),.status(new_status),.status_out(status_out))
 ALU ALU1(.src1(val_rn),.src2(val2),.cmd(EXE_CMD),.carry(carry),.out(ALU_res),.status_out(new_status));
 
 assign branch_taken=B;
+assign dest_out=dest;
+assign val_rm_out=val_rm;
+assign WB_EN_out=WB_EN;
+assign MEM_R_out=MEM_R;
+assign MEM_W_out=MEM_W;
 
 endmodule
