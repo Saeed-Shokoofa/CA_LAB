@@ -11,7 +11,7 @@ ID_REG ID_rsgister(.clk(clk),.rst(rst),.flush(),.carry(),.dest(),.signed_imm(),.
     EXE_CMD_out(),.MEM_W_out(),.MEM_R_out(),.WB_EN_out());
 EXE EXE_stg(.clk(clk),.rst(rst),.WB_EN(),.MEM_R(),.MEM_W(),.EXE_CMD(),.B(),.S(),.PC(),.val_rn(),.val_rm(),.imm(),.Shift_Operand(),.signed_imm(),.dest(),.carry(),.
     WB_EN_out(),.MEM_R_out(),.MEM_W_out(),.ALU_res(),.val_rm_out(),.dest_out(),.branch_adr(),.status_out(),.branch_taken());
-EXE_reg EXE_register(.clk(),.rst(),.dest(),.val_rm(),.ALU_res(),.MEM_W(),.MEM_R(),.WB_EN(),.
+EXE_reg EXE_register(.clk(clk),.rst(rst),.dest(),.val_rm(),.ALU_res(),.MEM_W(),.MEM_R(),.WB_EN(),.
     dest_out(),.val_rm_out(),.ALU_res_out(),.MEM_W_out(),.MEM_R_out(),.WB_EN_out());
 
 endmodule
