@@ -2,8 +2,8 @@ module ARM(clk,rst);
 
 input clk,rst;
 
-IF IF_stg(.clk(clk),.rst(rst),.freeze(),.Branch_taken(),.Branch_Addr(),.PC(),.Instruction());
-IF_reg IF_register(.clk(clk),.rst(rst),.freeze(),.flush(),.PC_in(),.Instruction_in(),.PC(),.Instruction());
+IF IF_stg(.clk(clk),.rst(rst),.freeze(1'b0),.Branch_taken(),.Branch_Addr(),.PC(),.Instruction());
+IF_reg IF_register(.clk(clk),.rst(rst),.freeze(1'b0),.flush(),.PC_in(),.Instruction_in(),.PC(),.Instruction());
 ID ID_stg(.clk(clk),.rst(rst),.z(),.c(),.n(),.v(),.instruction(),.PC(),.WB_WB_EN(),.WB_Value(),.WB_Dest(),.
     WB_EN(),.MEM_R(),.MEM_W(),.EXE_CMD(),.B(),.S(),.PC_out(),.val_rn(),.val_rm(),.dest(),.signed_imm(),.imm(),.Shift_Operand());
 ID_REG ID_rsgister(.clk(clk),.rst(rst),.flush(),.carry(),.dest(),.signed_imm(),.Shift_Operand(),.imm(),.val_rm(),.val_rn(),.PC(),.S(),.B(),.EXE_CMD(),.MEM_W(),.MEM_R(),.WB_EN(),.
