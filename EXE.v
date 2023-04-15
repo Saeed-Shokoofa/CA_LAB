@@ -12,7 +12,7 @@ output [3:0] dest_out,status_out;
 wire [31:0] val2;
 wire [3:0] new_status;
 
-adder AD(.a(PC),.b({{8{signed_imm[23]}},signed_imm[23:0]}),.out(branch_adr));
+adder AD(.a(PC),.b({{7{signed_imm[23]}},signed_imm[23:0],1'b0}),.out(branch_adr));
 val2gen VG(.Rm(val_rm),.Shift_Operand(Shift_Operand),.imm(imm),.en(MEM_R|MEM_W),.out(val2));
 st_reg ST(.clk(clk),.rst(rst),.S(S),.status(new_status),.status_out(status_out));
 ALU ALU1(.src1(val_rn),.src2(val2),.cmd(EXE_CMD),.carry(carry),.out(ALU_res),.status_out(new_status));
