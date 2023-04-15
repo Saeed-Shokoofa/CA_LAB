@@ -26,4 +26,9 @@ EXE EXE_stg(.clk(clk),.rst(rst),.WB_EN(id_WB_EN_out),.MEM_R(id_MEM_R_out),.MEM_W
 EXE_reg EXE_register(.clk(clk),.rst(rst),.dest(exe_dest),.val_rm(exe_val_rm),.ALU_res(exe_ALU_res),.MEM_W(exe_MEM_W),.MEM_R(exe_MEM_R),.WB_EN(exe_WB_EN),.
     dest_out(exe_dest_out),.val_rm_out(exe_val_rm_out),.ALU_res_out(exe_ALU_res_out),.MEM_W_out(exe_MEM_W_out),.MEM_R_out(exe_MEM_R_out),.WB_EN_out(exe_WB_EN_out));
 
+MEM_REG MEM_register(.clk(clk),.rst(rst),.WB_EN(),.MEM_R(),.ALU_res(),.data_mem(),.dest(),.
+WB_EN_out(),.MEM_R_out(),.ALU_res_out(),.data_mem_out(),.dest_out());
+
+WB WB_stg(.WB_EN(),.MEM_R(),.ALU_res(),.data_mem(),.dest(),.WB_EN_out(),.WB_val(),.WB_Dest_out());
+
 endmodule
