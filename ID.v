@@ -1,10 +1,10 @@
 module ID(clk,rst,z,c,n,v,instruction,PC,WB_WB_EN,WB_Value,WB_Dest,
-WB_EN,MEM_R,MEM_W,EXE_CMD,B,S,PC_out,val_rn,val_rm,dest,signed_imm,imm,Shift_Operand);
+WB_EN,MEM_R,MEM_W,EXE_CMD,B,S,PC_out,val_rn,val_rm,dest,signed_imm,imm,Shift_Operand,src2forhaz);
 input [31:0]instruction,PC,WB_Value;
 input clk,rst,z,c,n,v,WB_WB_EN;
 input [3:0]WB_Dest;
 output WB_EN,MEM_R,MEM_W,B,S;
-output [3:0]EXE_CMD,dest;
+output [3:0]EXE_CMD,dest,src2forhaz;
 output [31:0]PC_out,val_rn,val_rm;
 output imm;
 output [23:0] signed_imm;
