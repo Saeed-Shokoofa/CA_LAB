@@ -10,7 +10,7 @@ always @(*) begin
     S_OUT=s;
     if(mode==2'b00)begin
         case(opcode)
-            4'b0000:{WB_EN,MEM_R,MEM_W,B,S_OUT,EXE_CMD}=0;
+            4'b0000:{WB_EN,EXE_CMD}=5'b10110;
             4'b1101:{WB_EN,EXE_CMD}=5'b10001;
             4'b1111:{WB_EN,EXE_CMD}=5'b11001;
             4'b0100:{WB_EN,EXE_CMD}=5'b10010;

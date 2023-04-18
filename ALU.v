@@ -14,7 +14,7 @@ always@(*) begin
     4'b0010:begin outt=src1+src2;  status_out[3]=(src1[31] && src2[31] && ~outt[31])||(~src1[31] && ~src2[31] && outt[31]); end
     4'b0011:begin outt=src1+src2+carry;  status_out[3]=(src1[31] && src2[31] && ~outt[31])||(~src1[31] && ~src2[31] && outt[31]); end
     4'b0100:begin outt=src1-src2;  status_out[3]=(src1[31] && ~src2[31] && ~outt[31])||(~src1[31] && src2[31] && outt[31]); end
-    4'b0101:begin outt=src1-src2-~carry; status_out[3]=(src1[31] && ~src2[31] && ~outt[31])||(~src1[31] && src2[31] && outt[31]); end
+    4'b0101:begin if(carry) outt=src1-src2; else outt=src1-src2-1'b1; status_out[3]=(src1[31] && ~src2[31] && ~outt[31])||(~src1[31] && src2[31] && outt[31]); end
     4'b0110:outt=src1&src2;
     4'b0111:outt=src1|src2;
     4'b1000:outt=src1^src2;
