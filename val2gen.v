@@ -1,6 +1,6 @@
 module val2gen (input [31:0]Rm,input [11:0]Shift_Operand,input imm,en,output reg [31:0] out);
 always@(*)begin
-    if(en) begin
+    if(~en) begin
         if(imm) begin
             case(Shift_Operand[11:8])
             4'b0000:out={24'b0,Shift_Operand[7:0]};
@@ -29,6 +29,9 @@ always@(*)begin
             2'b11:out=(Rm>>Shift_Operand[11:7])|(Rm<<~Shift_Operand[11:7]);
             endcase
         end
+    end
+    else begin
+        out={20'b0,Shift_Operand};
     end
 end
 endmodule

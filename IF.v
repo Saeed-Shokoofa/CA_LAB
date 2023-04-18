@@ -54,7 +54,8 @@ module IF(input clk,rst,freeze,Branch_taken, input[31:0] Branch_Addr,output reg 
 	   ///////////////////////////////////////
 	 end
 		else begin
-			PC<=PC+32'd4;
+      if(~freeze)
+			  PC<=PC+32'd4;
 		end
 	end
 	assign Instruction = {mem[PC], mem[PC+32'd1], mem[PC+32'd2], mem[PC+32'd3]};

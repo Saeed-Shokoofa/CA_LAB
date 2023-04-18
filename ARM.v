@@ -37,6 +37,7 @@ WB_EN_out(MEM_WB_EN_out),.MEM_R_out(MEM_MEM_R_out),.ALU_res_out(MEM_ALU_res_out)
 WB WB_stg(.WB_EN(MEM_WB_EN_out),.MEM_R(MEM_MEM_R_out),.ALU_res(MEM_ALU_res_out),.data_mem(MEM_DATA_out),.dest(MEM_dest_out),.
     WB_EN_out(WB_WB_EN),.WB_val(WB_WB_val),.WB_Dest_out(WB_WB_dest));
 
-haz_det HDU(.src1(if_inst_out[19:16]),.src2(src2forhaz/*mux_out*/),.Two_src(id_MEM_W|id_imm),.MEM_dest(exe_dest_out),.MEM_WB(exe_WB_EN_out),.exe_dest(id_dest_out),.exe_WB_EN(id_WB_EN_out),.freeze(freeze));
+// haz_det HDU(.src1(if_inst_out[19:16]),.src2(src2forhaz/*mux_out*/),.Two_src(id_MEM_W|id_imm),.MEM_dest(exe_dest_out),.MEM_WB(exe_WB_EN_out),.exe_dest(id_dest_out),.exe_WB_EN(id_WB_EN_out),.freeze(freeze));
+assign freeze=1'b0;
 
 endmodule

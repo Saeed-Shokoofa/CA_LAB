@@ -14,11 +14,11 @@ always@(posedge clk,posedge rst) begin
     if(rst)
         {WB_EN_out,MEM_R_out,ALU_res_out,data_mem_out,dest_out}<=0;
     else begin
-        MEM_R_out<=WB_EN_out;
-        WB_EN_out<=MEM_R_out;
-        ALU_res_out<=ALU_res_out;
-        data_mem_out<=data_mem_out;
-        dest_out<=dest_out;
+        MEM_R_out<=MEM_R;
+        WB_EN_out<=WB_EN;
+        ALU_res_out<=ALU_res;
+        data_mem_out<=data_mem;
+        dest_out<=dest;
     end
 end
 endmodule

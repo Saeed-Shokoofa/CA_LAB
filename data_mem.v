@@ -1,4 +1,4 @@
-module memory(input clk,input [31:0]adr,data_in,input MEM_W_EN,MEM_R_EN,output [31:0]DATA);
+module memory(input clk,input [31:0]adr,data_in,input MEM_W_EN,MEM_R_EN,output reg[31:0]DATA);
 reg [7:0]mem[0:1023];
     always @(negedge clk)begin
         if(MEM_R_EN)begin

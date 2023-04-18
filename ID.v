@@ -33,5 +33,6 @@ assign imm=instruction[25];
 assign Shift_Operand=instruction[11:0];
 assign signed_imm=instruction[23:0];
 assign PC_out=PC;
+assign src2forhaz=Mux2_Out;
 
 endmodule
