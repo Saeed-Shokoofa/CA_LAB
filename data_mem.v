@@ -1,5 +1,5 @@
 module memory(input clk,input [31:0]adr,data_in,input MEM_W_EN,MEM_R_EN,output reg[31:0]DATA);
-reg [7:0]mem[0:1023];
+reg [7:0]mem[0:511];
     always @(negedge clk)begin
         if(MEM_R_EN)begin
             DATA <= {mem[((adr-32'd1024))],mem[((adr-32'd1024))+32'd1],mem[((adr-32'd1024))+32'd2],mem[((adr-32'd1024))+32'd3]};

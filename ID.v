@@ -13,7 +13,7 @@ wire check_res;
 wire [8:0] mux_in,mux_out;
 wire [3:0] Mux2_Out;
 
-mux2to1 #(4)MM1(.sel(mux_out[1]),.in1(instruction[3:0]),.in2(instruction[15:12]),.out(Mux2_Out));
+mux2to1 #(4)MM1(.sel(mux_out[2]),.in1(instruction[3:0]),.in2(instruction[15:12]),.out(Mux2_Out));
 mux2to1 #(9)MM2(.sel((~check_res|freeze)),.in1(mux_in),.in2(9'b0),.out(mux_out));
 CU CNT(.opcode(instruction[24:21]),.mode(instruction[27:26]),.s(instruction[20]),
 .WB_EN(mux_in[0]),.MEM_R(mux_in[1]),.MEM_W(mux_in[2]),.B(mux_in[7]),.S_OUT(mux_in[8]),.EXE_CMD(mux_in[6:3]));

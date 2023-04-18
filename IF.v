@@ -1,5 +1,5 @@
 module IF(input clk,rst,freeze,Branch_taken, input[31:0] Branch_Addr,output reg [31:0] PC,output [31:0]Instruction );
-	reg [7:0]mem[0:128];
+	reg [7:0]mem[0:255];
 	always @(posedge clk, posedge rst)begin
 		if(rst) begin
 		PC<= 32'b0;
