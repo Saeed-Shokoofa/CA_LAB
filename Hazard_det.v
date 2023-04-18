@@ -6,12 +6,16 @@ output freeze;
 reg first,second;
 
 always @(*) begin
-    if((MEM_WB&&MEM_dest==src1)||(exe_WB_EN&&exe_dest==src1))begin
+    if((MEM_WB && (MEM_dest==src1)) || (exe_WB_EN && (exe_dest==src1)))begin
         first=1'b1;
     end
-    if((MEM_WB&&MEM_dest==src2)||(exe_WB_EN&&exe_dest==src2))begin
+    else 
+        first=1'b0;
+    if((MEM_WB && (MEM_dest==src2)) || (exe_WB_EN && (exe_dest==src2)))begin
         second=1'b1;
     end
+    else 
+        second=1'b0;
 end
 
 assign freeze=(Two_src)?(first|second):first;
