@@ -1,8 +1,9 @@
-module IF(input clk,rst,freeze,Branch_taken, input[31:0] Branch_Addr,output reg [31:0] PC,output [31:0]Instruction );
+module IF(input clk,rst,freeze,Branch_taken, input[31:0] Branch_Addr,output [31:0] PC,output [31:0]Instruction );
 	reg [7:0]mem[0:255];
+  reg[31:0] adr_pc;
 	always @(posedge clk, posedge rst)begin
 		if(rst) begin
-		PC<= 32'b0;
+		adr_pc<= 32'b0;
 	   ///////////////////////////////////////
 	 {mem[0], mem[1], mem[2],    mem[3]}= 32'b1110_00_1_1101_0_0000_0000_000000010100; //MOV R0 ,#20 //R0 = 20
      {mem[4], mem[5], mem[6],    mem[7]}= 32'b1110_00_1_1101_0_0000_0001_101000000001; //MOV R1 ,#4096 //R1 = 4096
@@ -47,7 +48,7 @@ module IF(input clk,rst,freeze,Branch_taken, input[31:0] Branch_Addr,output reg 
      {mem[160], mem[161], mem[162],    mem[163]}= 32'b1110_01_0_0100_1_0000_0001_000000000000; //LDR R1 ,[R0],#0 //R1 = -2147483648
      {mem[164], mem[165], mem[166],    mem[167]}= 32'b1110_01_0_0100_1_0000_0010_000000000100; //LDR R2 ,[R0],#4 //R2 = -1073741824
      {mem[168], mem[169], mem[170],    mem[171]}= 32'b1110_01_0_0100_1_0000_0011_000000001000; //LDR R3 ,[R0],#8 //R3 = 41
-	 {mem[172], mem[173], mem[174],    mem[175]}= 32'b1110_01_0_0100_1_0000_0100_000000001100; //LDR R4 ,[R0],#12 //R4 = 8192
+	   {mem[172], mem[173], mem[174],    mem[175]}= 32'b1110_01_0_0100_1_0000_0100_000000001100; //LDR R4 ,[R0],#12 //R4 = 8192
      {mem[176], mem[177], mem[178],    mem[179]}= 32'b1110_01_0_0100_1_0000_0101_000000010000; //LDR R5 ,[R0],#16 //R5 = -123
      {mem[180], mem[181], mem[182],    mem[183]}= 32'b1110_01_0_0100_1_0000_0110_000000010100; //LDR R6 ,[R0],#20 //R4 = 10
      {mem[184], mem[185], mem[186],    mem[187]}= 32'b1110_10_1_0_111111111111111111111111 ; //B #-1
@@ -55,8 +56,13 @@ module IF(input clk,rst,freeze,Branch_taken, input[31:0] Branch_Addr,output reg 
 	 end
 		else begin
       if(~freeze)
-			  PC<=PC+32'd4;
+        if(Branch_taken)
+          adr_pc<=Branch_Addr;
+          else
+			     adr_pc<=adr_pc+4;
 		end
 	end
-	assign Instruction = {mem[PC], mem[PC+32'd1], mem[PC+32'd2], mem[PC+32'd3]};
+  assign PC=adr_pc+32'd4;
+
+	assign Instruction = {mem[adr_pc], mem[adr_pc+32'd1], mem[adr_pc+32'd2], mem[adr_pc+32'd3]};
 endmodule

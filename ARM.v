@@ -11,7 +11,7 @@ wire [31:0]MEM_DATA,MEM_ALU_res,MEM_ALU_res_out,MEM_DATA_out,WB_WB_val;
 wire freeze,MEM_MEM_R,MEM_WB_EN,MEM_WB_EN_out,MEM_MEM_R_out,WB_WB_EN;
 wire [3:0]src2forhaz;
 
-IF IF_stg(.clk(clk),.rst(rst),.freeze(freeze),.Branch_taken(if_br_taken),.Branch_Addr(if_br_adr),.PC(if_pc),.Instruction(if_inst));
+IF IF_stg(.clk(clk),.rst(rst),.freeze(freeze),.Branch_taken(exe_br_taken),.Branch_Addr(exe_br_adr),.PC(if_pc),.Instruction(if_inst));
 
 IF_reg IF_register(.clk(clk),.rst(rst),.freeze(freeze),.flush(exe_br_taken),.PC_in(if_pc),.Instruction_in(if_inst),.PC(if_pc_out),.Instruction(if_inst_out));
 
@@ -23,7 +23,7 @@ ID_REG ID_rsgister(.clk(clk),.rst(rst),.flush(exe_br_taken),.carry(id_c),.dest(i
     EXE_CMD_out(id_EXE_CMD_out),.MEM_W_out(id_MEM_W_out),.MEM_R_out(id_MEM_R_out),.WB_EN_out(id_WB_EN_out));
 
 EXE EXE_stg(.clk(clk),.rst(rst),.WB_EN(id_WB_EN_out),.MEM_R(id_MEM_R_out),.MEM_W(id_MEM_W_out),.EXE_CMD(id_EXE_CMD_out),.B(id_B_out),.S(id_S_out),.PC(id_PC_out),.val_rn(id_val_rn_out),.val_rm(id_val_rm_out),.imm(id_imm_out),.Shift_Operand(id_shift_operand_out),.signed_imm(id_signed_imm_out),.dest(id_dest_out),.carry(id_cry_out),.
-    WB_EN_out(exe_WB_EN),.MEM_R_out(exe_MEM_R),.MEM_W_out(exe_MEM_W),.ALU_res(exe_ALU_res),.val_rm_out(exe_val_rm),.dest_out(exe_dest),.branch_adr(exe_br_adr),.status_out({id_z,id_c,id_n,id_v}),.branch_taken(exe_br_taken));
+    WB_EN_out(exe_WB_EN),.MEM_R_out(exe_MEM_R),.MEM_W_out(exe_MEM_W),.ALU_res(exe_ALU_res),.val_rm_out(exe_val_rm),.dest_out(exe_dest),.branch_adr(exe_br_adr),.status_out({id_v,id_n,id_c,id_z}),.branch_taken(exe_br_taken));
 
 EXE_reg EXE_register(.clk(clk),.rst(rst),.dest(exe_dest),.val_rm(exe_val_rm),.ALU_res(exe_ALU_res),.MEM_W(exe_MEM_W),.MEM_R(exe_MEM_R),.WB_EN(exe_WB_EN),.
     dest_out(exe_dest_out),.val_rm_out(exe_val_rm_out),.ALU_res_out(exe_ALU_res_out),.MEM_W_out(exe_MEM_W_out),.MEM_R_out(exe_MEM_R_out),.WB_EN_out(exe_WB_EN_out));
