@@ -19,8 +19,8 @@ adder AD(.a(PC),.b({{6{signed_imm[23]}},signed_imm[23:0],2'b0}),.out(branch_adr)
 val2gen VG(.Rm(mux2_out),.Shift_Operand(Shift_Operand),.imm(imm),.en(MEM_R|MEM_W),.out(val2));
 st_reg ST(.clk(clk),.rst(rst),.S(S),.status(new_status),.status_out(status_out));
 ALU ALU1(.src1(mux1_out),.src2(val2),.cmd(EXE_CMD),.carry(carry),.out(ALU_res),.status_out(new_status));
-mux4to1 #(32)MM1(.i0(val_rn),.i1(MEM_val_rn),.i2(WB_val_rn),.i3(),.sel(sel1),.out(mux1_out))
-mux4to1 #(32)MM2(.i0(val_rm),.i1(MEM_val_rm),.i2(WB_val_rm),.i3(),.sel(sel2),.out(mux2_out))
+mux4to1 #(32)MM1(.i0(val_rn),.i1(MEM_val_rn),.i2(WB_val_rn),.i3(),.sel(sel1),.out(mux1_out));
+mux4to1 #(32)MM2(.i0(val_rm),.i1(MEM_val_rm),.i2(WB_val_rm),.i3(),.sel(sel2),.out(mux2_out));
 
 assign branch_taken=B;
 assign dest_out=dest;
