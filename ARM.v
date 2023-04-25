@@ -1,6 +1,6 @@
-module ARM(clk,rst);
+module ARM(clk,rst,forward_en);
 
-input clk,rst;
+input clk,rst,forward_en;
 wire if_br_taken,exe_br_taken,id_z,id_c,id_n,id_v,id_WB_EN,id_MEM_R,id_MEM_W,id_B,id_S,id_imm,id_cry_out,id_imm_out,id_B_out,id_S_out,id_MEM_W_out,id_MEM_R_out,id_WB_EN_out;
 wire exe_WB_EN,exe_MEM_R,exe_MEM_W,exe_MEM_W_out,exe_MEM_R_out,exe_WB_EN_out;
 wire [3:0]id_EXE_CMD,id_dest,id_dest_out,id_EXE_CMD_out,exe_dest,exe_dest_out,mem_dest,MEM_dest_out,WB_WB_dest;
@@ -37,7 +37,12 @@ WB_EN_out(MEM_WB_EN_out),.MEM_R_out(MEM_MEM_R_out),.ALU_res_out(MEM_ALU_res_out)
 WB WB_stg(.WB_EN(MEM_WB_EN_out),.MEM_R(MEM_MEM_R_out),.ALU_res(MEM_ALU_res_out),.data_mem(MEM_DATA_out),.dest(MEM_dest_out),.
     WB_EN_out(WB_WB_EN),.WB_val(WB_WB_val),.WB_Dest_out(WB_WB_dest));
 
-haz_det HDU(.src1(if_inst_out[19:16]),.src2(src2forhaz/*mux_out*/),.Two_src(id_MEM_W|~id_imm),.MEM_dest(exe_dest_out),.MEM_WB(exe_WB_EN_out),.exe_dest(id_dest_out),.exe_WB_EN(id_WB_EN_out),.freeze(freeze));
+haz_det HDU(.src1(if_inst_out[19:16]),.src2(src2forhaz/*mux_out*/),.Two_src(id_MEM_W|~id_imm),.MEM_dest(exe_dest_out),.MEM_WB(exe_WB_EN_out),.exe_dest(id_dest_out),.exe_WB_EN(id_WB_EN_out),.freeze(haz_freeze));
 //assign freeze=1'b0;
+
+wire haz_freeze;
+assign freeze=(forward_en)?0:haz_freeze;
+
+forwarding_unit FORU(.src1(),.src2(),.mem_WB(),.mem_Dest(),.WB_WB(),.WB_dest(),.sel_src1(),.sel_src2());
 
 endmodule
