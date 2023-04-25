@@ -7,10 +7,10 @@ always@(*)begin
     sel_src2=2'b00;
     if(mem_WB==1'b1&&mem_Dest==src1)
         sel_src1=2'b01;
-    else if(mem_WB==1'b1&&mem_Dest==src2)
-        sel_src2=2'b01;
     else if(WB_WB==1'b1&&WB_dest==src1)
         sel_src1=2'b10;
+    if(mem_WB==1'b1&&mem_Dest==src2)
+        sel_src2=2'b01;
     else if(WB_WB==1'b1&&WB_dest==src2) 
         sel_src2=2'b10;
 end
