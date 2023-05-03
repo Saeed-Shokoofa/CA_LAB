@@ -48,9 +48,9 @@ haz_det HDU(.src1(if_inst_out[19:16]),.src2(src2forhaz/*mux_out*/),.Two_src(id_M
 
 
 //assign freeze=(forward_en)?0:haz_freeze;
-assign sel_mux1=(forward_en)?sel1_forw:2'b00;
-assign sel_mux2=(forward_en)?sel2_forw:2'b00;
+// assign sel_mux1=(forward_en)?sel1_forw:2'b00;
+// assign sel_mux2=(forward_en)?sel2_forw:2'b00;
 
-forwarding_unit FORU(.src1(src1_forw),.src2(src2_forw),.mem_WB(exe_WB_EN_out),.mem_Dest(exe_dest_out),.WB_WB(MEM_WB_EN_out),.WB_dest(MEM_dest_out),.sel_src1(sel1_forw),.sel_src2(sel2_forw));
+forwarding_unit FORU(.en(forward_en),.src1(src1_forw),.src2(src2_forw),.mem_WB(exe_WB_EN_out),.mem_Dest(exe_dest_out),.WB_WB(MEM_WB_EN_out),.WB_dest(MEM_dest_out),.sel_src1(sel_mux1),.sel_src2(sel_mux2));
 
 endmodule
