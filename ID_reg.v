@@ -1,8 +1,8 @@
-module ID_REG(clk,rst,flush,carry,dest,signed_imm,Shift_Operand,imm,val_rm,val_rn,PC,S,B,EXE_CMD,MEM_W,MEM_R,WB_EN,src1_in,src2_in,
+module ID_REG(clk,rst,flush,freeze,carry,dest,signed_imm,Shift_Operand,imm,val_rm,val_rn,PC,S,B,EXE_CMD,MEM_W,MEM_R,WB_EN,src1_in,src2_in,
 carry_out,dest_out,signed_imm_out,Shift_Operand_out,imm_out,val_rm_out,val_rn_out,PC_out,S_out,B_out,
 EXE_CMD_out,MEM_W_out,MEM_R_out,WB_EN_out,src1_out,src2_out);
 
-input clk,rst,flush,carry,S,B,MEM_W,MEM_R,WB_EN,imm;
+input clk,rst,flush,carry,S,B,MEM_W,MEM_R,WB_EN,imm,freeze;
 input [3:0]dest,EXE_CMD,src1_in,src2_in;
 input [31:0]val_rm,val_rn,PC;
 input [11:0]Shift_Operand;
@@ -22,7 +22,7 @@ always@(posedge clk,posedge rst) begin
         if(flush)
             {carry_out,dest_out,signed_imm_out,Shift_Operand_out,imm_out,val_rm_out,val_rn_out,PC_out,S_out,B_out,
         EXE_CMD_out,MEM_W_out,MEM_R_out,WB_EN_out,src1_out,src2_out}<=0;
-        else begin
+        else if(~freeze) begin
             carry_out<=carry;
             dest_out<=dest;
             signed_imm_out<=signed_imm;
