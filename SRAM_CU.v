@@ -15,10 +15,10 @@ wire [31:0]temp_data;
 always@(posedge clk,posedge rst) begin
     if(rst) begin
         ps<=0;
-        {rd_data,ready,SRAM_adr,SRAM_UB_N,SRAM_LB_N,SRAM_WE_N,SRAM_CE_N,SRAM_OE_N}<=0;
+        {rd_data,SRAM_adr,SRAM_UB_N,SRAM_LB_N,SRAM_WE_N,SRAM_CE_N,SRAM_OE_N}<=0;
     end
     else begin
-        {ready,SRAM_UB_N,SRAM_LB_N,SRAM_CE_N,SRAM_OE_N,SRAM_adr}=0;
+        {SRAM_UB_N,SRAM_LB_N,SRAM_CE_N,SRAM_OE_N,SRAM_adr}=0;
         SRAM_WE_N=1'b1;
         // SRAM_DQ=16'bzzzzzzzzzzzzzzzz;
         case(ps)
