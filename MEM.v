@@ -2,7 +2,8 @@ module MEM(clk,rst,ALU_res,val_rm,MEM_W_EN,MEM_R_EN,WB_EN,Dest,DATA,ALU_res_out,
 input clk,rst,MEM_W_EN,MEM_R_EN,WB_EN;
 input [3:0]Dest;
 input [31:0]ALU_res,val_rm;
-output MEM_R_EN_out,WB_EN_out,ready,SRAM_adr,SRAM_UB_N,SRAM_LB_N,SRAM_WE_N,SRAM_CE_N,SRAM_OE_N;
+output MEM_R_EN_out,WB_EN_out,ready,SRAM_UB_N,SRAM_LB_N,SRAM_WE_N,SRAM_CE_N,SRAM_OE_N;
+output [17:0]SRAM_adr;
 output [3:0]Dest_out;
 output [31:0]DATA,ALU_res_out;
 

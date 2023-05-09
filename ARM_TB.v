@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 module ARM_TB();
 reg clk=0,rst=0;
 reg forward_en=1;
