@@ -29,7 +29,6 @@ always@(wr_en,rd_en,ps) begin
         if(rd_en)begin
             // SRAM_adr={s_adr[18:2],1'b0};
             ns<=ps+3'd1;
-				temp_data[15:0]=SRAM_DQ;
         end
         if(wr_en)begin
             // SRAM_adr={s_adr[18:2],1'b0};
@@ -43,7 +42,7 @@ always@(wr_en,rd_en,ps) begin
         if(rd_en)begin
             // SRAM_adr={s_adr[18:2],1'b1};
             // rd_data[15:0]=SRAM_DQ;
-            temp_data[31:16]=SRAM_DQ;
+            temp_data[15:0]=SRAM_DQ;
             ns<=ps+3'd1;
         end
         if(wr_en)begin
@@ -57,7 +56,7 @@ always@(wr_en,rd_en,ps) begin
         ns<=ps+3'd1;
         if(rd_en)begin
             // rd_data[31:16]=SRAM_DQ;
-            
+            temp_data[31:16]=SRAM_DQ;
             // ns<=ps+3'd1;
         end
     end

@@ -20,7 +20,7 @@ wire [3:0]src1_forw,src2_forw;
 wire [1:0]sel1_forw,sel2_forw;
 wire [1:0]sel_mux1,sel_mux2;
 
-IF IF_stg(.clk(clk),.rst(rst),.freeze(freeze),.Branch_taken(exe_br_taken),.Branch_Addr(exe_br_adr),.PC(if_pc),.Instruction(if_inst));
+IF IF_stg(.clk(clk),.rst(rst),.freeze(freeze|~SRAM_ready),.Branch_taken(exe_br_taken),.Branch_Addr(exe_br_adr),.PC(if_pc),.Instruction(if_inst));
 
 IF_reg IF_register(.clk(clk),.rst(rst),.freeze(freeze|~SRAM_ready),.flush(exe_br_taken),.PC_in(if_pc),.Instruction_in(if_inst),.PC(if_pc_out),.Instruction(if_inst_out));
 
