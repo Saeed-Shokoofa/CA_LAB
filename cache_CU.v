@@ -26,7 +26,14 @@ module cache_CU (clk,rst,adr,wdata,MEM_R_EN,MEM_W_EN,rdata,ready,sram_adr,sram_w
     assign data1=(adr[2])?mem1[adr[8:3]][63:32]:mem1[adr[8:3]][31:0];
     assign data2=(adr[2])?mem2[adr[8:3]][63:32]:mem2[adr[8:3]][31:0];
 
+    integer i;
     always @(*) begin
+        if(rst) begin
+            for(i=0;i<16;i=i+1)begin
+				tag1[i]=0;
+                tag2[i]=0;
+			end
+        end
         {read,write,rdata}=0;
         sram_adr={adr[31:3],3'b000};
         case (ps)
@@ -67,13 +74,10 @@ module cache_CU (clk,rst,adr,wdata,MEM_R_EN,MEM_W_EN,rdata,ready,sram_adr,sram_w
         end
         endcase
     end
-    integer i;
-    always @(posedge clk,posedge rst,ps) begin
+    
+    always @(posedge clk,posedge rst) begin
         if(rst)begin
-            for(i=0;i<16;i=i+1)begin
-				tag1[i]=0;
-                tag2[i]=0;
-			end
+            ns<=0;
         end
         else begin
             case(ps)
