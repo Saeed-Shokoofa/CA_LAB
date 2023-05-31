@@ -29,9 +29,11 @@ module cache_CU (clk,rst,adr,wdata,MEM_R_EN,MEM_W_EN,rdata,ready,sram_adr,sram_w
     integer i;
     always @(*) begin
         if(rst) begin
-            for(i=0;i<16;i=i+1)begin
+            for(i=0;i<64;i=i+1)begin
 				tag1[i]=0;
                 tag2[i]=0;
+                mem1[i]=63'd10;
+                mem2[i]=63'd10;
 			end
         end
         {read,write,rdata}=0;
